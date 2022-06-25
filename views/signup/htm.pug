@@ -1,0 +1,11 @@
+.container.col-6
+    if message
+        h2
+            p.text-danger= message
+    h1 Sign up
+    form(action ="signup",method='POST')
+        label.form-label(for = "email-address") Email:*
+        input#user-name.form-control(type="text",name='email' placeholder='ss@gmail.com')
+        label.form-label(for = "password") Password:*
+        input#user-name.form-control(type="password",name='password')
+        input#submit.btn.btn-primary.mt-3(type="submit" value='submit')
