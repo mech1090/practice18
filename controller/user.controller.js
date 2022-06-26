@@ -36,6 +36,7 @@ const getSignupForm = (req,res)=>{
 const signup = async(req,res)=>{
     const {email,password} = req.body
     const fields = {email,password}
+    const field = {password}
     const {error,value} = userValidationSchema(fields)
     if(error){
         return res.render('signup/layout',{message:error.details[0].message})
@@ -44,9 +45,11 @@ const signup = async(req,res)=>{
     if(findUser){
         return res.render('login/layout',{message:'User Exists LOGIN'})
     }
+   // const hashService = await userService.hashPass({password})
+//    console.log(await userService.hashPass({password}))
     const hashPassword = await bcrypt.hash(password,config.get('hash.salt'))
     const createUser = await userService.createEntries({email,password:hashPassword})
-    return res.render('signup/layout',{message:`${createUser}`})
+    return res.render('signup/layout',{message:'User Created'})
 }
 
 
